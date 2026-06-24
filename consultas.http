@@ -1,0 +1,114 @@
+### Atualizar dados da Babá (Ana Paula Souza)
+
+PUT http://localhost:3000/api/usuarios/USR446214606
+Content-Type: application/json
+
+{
+    "nome": "Ana Paula Souza",
+    "telefone": "(11) 98888-9999",
+    "email_1": "anapaula.nova@email.com"
+}
+
+
+GET http://localhost:3000/api/babas
+
+
+DELETE http://localhost:3000/api/usuarios/USR446217550
+
+DELETE http://localhost:3000/api/usuarios/USR451691030
+
+
+
+
+
+
+POST http://localhost:3000/api/babas
+Content-Type: application/json
+
+{
+    "nome": "Daniela Ferreira",
+    "cpf": "",
+    "telefone": "(41) 95555-4444",
+    "email": "daniela.f@email.com",
+    "email2": "",
+    "tipo": "baba",
+    "data_cadastro": "2023-10-27T17:00:00Z",
+    "antecedentes_status": "Termo de responsabilidade aceito",
+    "foto_perfil_nome": "daniela_foto.jpg",
+    "foto_base64": "data:image/png;base64,iVBORw0KGgo...",
+    "status_cadastro": "Ativa"
+}
+
+POST http://localhost:3000/api/babas
+Content-Type: application/json
+
+ {
+    "nome": "Carla Mendes",
+    "cpf": "333.444.555-66",
+    "email": "carla.m@email.com",
+    "telefone": "(31) 96666-3333",
+    "foto_perfil_nome": null,
+    "email_2": null,
+    "status_cadastro": "Ativa"
+  }
+
+
+POST http://localhost:3000/api/babas
+Content-Type: application/json
+
+{
+    
+    "nome": "Teste Babá",
+    "cpf": "kjsdbksdb",
+    "email": "teste.baba@email.com",
+    "telefone": "(31) 96666-6897",
+    "foto_perfil_nome": "",
+    "email_2": "",
+    "status_cadastro": "Ativa"
+}
+
+POST http://localhost:3000/api/babas
+Content-Type: application/json
+
+{
+    
+    "nome": "Teste Babá2",
+    "cpf": "123.456.789-00",
+    "email": "dhkjsadh",
+    "telefone": "(31) 96666-6897",
+    "foto_perfil_nome": "",
+    "email_2": "",
+    "status_cadastro": "Ativa"
+}
+
+
+GET http://localhost:3000/api/usuarios/USR551907724
+
+PUT http://localhost:3000/api/usuarios/USR551907724
+Content-Type: application/json
+
+{
+    "nome": "Teste Babá Editada",
+    "email_1": "teste.baba.editada@email.com",
+    "telefone": "(31) 96666-6897",
+    "foto_perfil_nome": "",
+    "email_2": "",
+    "status_cadastro": "Ativa"
+}
+
+POST http://localhost:3000/api/babas
+Content-Type: application/json
+
+{
+    "nome": "Claudia Vieria",
+    "cpf": "",
+    "telefone": "(41) 95555-4444",
+    "email": "claudia.v@email.com",
+    "email2": "",
+    "tipo": "baba",
+    "data_cadastro": "2023-10-27T17:00:00Z",
+    "antecedentes_status": "Termo de responsabilidade aceito",
+    "foto_perfil_nome": "daniela_foto.jpg",
+    "foto_base64": "data:image/png;base64,iVBORw0KGgo...",
+    "status_cadastro": "Ativa"
+}

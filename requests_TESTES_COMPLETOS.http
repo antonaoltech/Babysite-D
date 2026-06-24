@@ -1,0 +1,436 @@
+### ======================================================
+### BABYSITE API - TESTES COMPLETOS (REST Client)
+### Como usar: Clique em "Send Request" acima de cada bloco
+### ======================================================
+
+@baseUrl = http://localhost:3000/api
+
+### ======================================================
+### 1️⃣ CRIAR (CREATE) - POST
+### ======================================================
+
+### 1.1 CREATE - Cadastrar Novo Usuário Base
+POST {{baseUrl}}/usuarios
+Content-Type: application/json
+
+{
+  "usuario_codigo": "USR001",
+  "cpf": "12345678900",
+  "email_1": "joao.silva@email.com",
+  "email_2": "joao2@email.com",
+  "telefone": "11999999999",
+  "nome": "João Silva"
+}
+
+### 1.2 CREATE - Cadastrar Babá (Primeira Babá)
+POST {{baseUrl}}/babas
+Content-Type: application/json
+
+{
+  "nome": "Ana Paula Souza",
+  "cpf": "98765432100",
+  "telefone": "11988888888",
+  "email_1": "anapaula@email.com",
+  "email_2": "ana.reserva@email.com",
+  "status_cadastro": "Ativa",
+  "foto": "foto_ana.jpg",
+  "antecedentes_pdf": "antecedentes_ana.pdf"
+}
+
+### 1.3 CREATE - Cadastrar Segunda Babá
+POST {{baseUrl}}/babas
+Content-Type: application/json
+
+{
+  "nome": "Beatriz Oliveira",
+  "cpf": "11122233344",
+  "telefone": "21987654321",
+  "email_1": "beatriz.oliva@email.com",
+  "status_cadastro": "Ativa",
+  "foto": "foto_beatriz.jpg"
+}
+
+### 1.4 CREATE - Cadastrar Terceira Babá
+POST {{baseUrl}}/babas
+Content-Type: application/json
+
+{
+  "nome": "Carla Mendes",
+  "cpf": "55566677788",
+  "telefone": "31998765432",
+  "email_1": "carla.mendes@email.com",
+  "status_cadastro": "Ativa"
+}
+
+### 1.5 CREATE - Cadastrar Responsável (Pais)
+POST {{baseUrl}}/pais
+Content-Type: application/json
+
+{
+  "nome": "Ricardo Santos",
+  "cpf": "44455566677",
+  "telefone": "11991111111",
+  "email_1": "ricardo.santos@email.com",
+  "email_2": "ricardo.trabalho@email.com",
+  "filhos": [
+    {
+      "nome": "Enzo Santos",
+      "cpf": "99988877766",
+      "alergias": "Amendoim"
+    }
+  ]
+}
+
+### 1.6 CREATE - Cadastrar Segundo Responsável
+POST {{baseUrl}}/pais
+Content-Type: application/json
+
+{
+  "nome": "Mariana Lima",
+  "cpf": "33344455566",
+  "telefone": "21988888888",
+  "email_1": "mariana.lima@email.com",
+  "filhos": [
+    {
+      "nome": "Pedro Lima",
+      "cpf": "11133344455",
+      "alergias": "Nenhuma"
+    },
+    {
+      "nome": "Julia Lima",
+      "cpf": "22244455566",
+      "alergias": "Lactose"
+    }
+  ]
+}
+
+### 1.7 CREATE - Cadastrar Filho Isolado
+POST {{baseUrl}}/filhos
+Content-Type: application/json
+
+{
+  "nome": "Gabriel Costa",
+  "cpf": "77788899900",
+  "alergias": "Frutos secos",
+  "usuario_codigo": "USR001"
+}
+
+### ======================================================
+### 2️⃣ LER (READ) - GET
+### ======================================================
+
+### 2.1 READ - Listar Todos os Usuários
+GET {{baseUrl}}/usuarios
+
+### 2.2 READ - Listar Todos os Usuários (com paginação)
+GET {{baseUrl}}/usuarios?page=1&limit=10
+
+### 2.3 READ - Filtrar Usuários por Nome
+GET {{baseUrl}}/usuarios?nome=João%20Silva
+
+### 2.4 READ - Filtrar Usuários por CPF
+GET {{baseUrl}}/usuarios?cpf=12345678900
+
+### 2.5 READ - Filtrar Usuários por Email
+GET {{baseUrl}}/usuarios?email_1=joao.silva@email.com
+
+### 2.6 READ - Buscar Usuário por ID (Código)
+GET {{baseUrl}}/usuarios/USR001
+
+### 2.7 READ - Listar Todas as Babás (com INNER JOIN)
+GET {{baseUrl}}/babas
+
+### 2.8 READ - Listar Todas as Babás Ativas
+GET {{baseUrl}}/babas?status=Ativa
+
+### 2.9 READ - Buscar Babá por ID
+GET {{baseUrl}}/babas/BAB123456789
+
+### ======================================================
+### 3️⃣ ATUALIZAR (UPDATE) - PUT
+### ======================================================
+
+### 3.1 UPDATE - Atualizar Dados do Usuário
+PUT {{baseUrl}}/usuarios/USR001
+Content-Type: application/json
+
+{
+  "email_1": "joao.silva.novo@email.com",
+  "email_2": "joao.novo2@email.com",
+  "telefone": "11999999888",
+  "nome": "João Silva Santos"
+}
+
+### 3.2 UPDATE - Atualizar Status de Babá (Ativa → Inativa)
+PUT {{baseUrl}}/babas/BAB123456789
+Content-Type: application/json
+
+{
+  "status_cadastro": "Inativa"
+}
+
+### 3.3 UPDATE - Atualizar Foto de Babá
+PUT {{baseUrl}}/babas/BAB123456789
+Content-Type: application/json
+
+{
+  "foto": "nova_foto_ana.jpg"
+}
+
+### 3.4 UPDATE - Atualizar Múltiplos Campos da Babá
+PUT {{baseUrl}}/babas/BAB123456789
+Content-Type: application/json
+
+{
+  "nome": "Ana Paula Souza Lima",
+  "email_1": "ana.nova@email.com",
+  "telefone": "11988888777",
+  "status_cadastro": "Ativa",
+  "foto": "foto_atualizada.jpg"
+}
+
+### ======================================================
+### 4️⃣ DELETAR (DELETE) - DELETE
+### ======================================================
+
+### ⚠️ AVISO: DELETE remove registros permanentemente!
+
+### 4.1 DELETE - Remover Babá (soft delete)
+DELETE {{baseUrl}}/babas/BAB123456789
+
+### 4.2 DELETE - Remover Responsável (com filhos)
+DELETE {{baseUrl}}/pais/PAI123456789
+
+### 4.3 DELETE - Remover Usuário Completo (cascata)
+DELETE {{baseUrl}}/usuarios/USR001
+
+### ======================================================
+### 5️⃣ TESTES DE VALIDAÇÃO (Devem Retornar Erro 400)
+### ======================================================
+
+### 5.1 ERRO - CPF Inválido (menos de 11 dígitos)
+POST {{baseUrl}}/babas
+Content-Type: application/json
+
+{
+  "nome": "Teste Invalido",
+  "cpf": "123",
+  "telefone": "11999999999",
+  "email_1": "teste@email.com"
+}
+
+### 5.2 ERRO - Email Inválido (sem @)
+POST {{baseUrl}}/babas
+Content-Type: application/json
+
+{
+  "nome": "Teste Email",
+  "cpf": "12345678900",
+  "telefone": "11999999999",
+  "email_1": "teste.email.com"
+}
+
+### 5.3 ERRO - Email Sem .com
+POST {{baseUrl}}/babas
+Content-Type: application/json
+
+{
+  "nome": "Teste Dominio",
+  "cpf": "12345678900",
+  "telefone": "11999999999",
+  "email_1": "teste@email"
+}
+
+### 5.4 ERRO - Dados Obrigatórios Faltando
+POST {{baseUrl}}/babas
+Content-Type: application/json
+
+{
+  "nome": "Teste Incompleto"
+}
+
+### 5.5 ERRO - CPF Duplicado (tenta inserir CPF que já existe)
+POST {{baseUrl}}/babas
+Content-Type: application/json
+
+{
+  "nome": "Tentativa Duplicado",
+  "cpf": "98765432100",
+  "telefone": "11977777777",
+  "email_1": "outro.email@email.com"
+}
+
+### ======================================================
+### 6️⃣ TESTES DE ROTAS NÃO ENCONTRADAS (404)
+### ======================================================
+
+### 6.1 ERRO - Rota Inválida
+GET {{baseUrl}}/rota-inexistente
+
+### 6.2 ERRO - Recurso Não Encontrado
+GET {{baseUrl}}/usuarios/USR999999999
+
+### 6.3 ERRO - Babá Não Encontrada
+DELETE {{baseUrl}}/babas/BAB999999999
+
+### ======================================================
+### 7️⃣ TESTES DE RELACIONAMENTOS (Integridade)
+### ======================================================
+
+### 7.1 CRIAR Usuário → CRIAR Babá → Verificar Relacionamento
+### Passo 1: Criar usuário base
+POST {{baseUrl}}/usuarios
+Content-Type: application/json
+
+{
+  "usuario_codigo": "USR_TESTE_REL",
+  "cpf": "99912345678",
+  "email_1": "teste.relacionamento@email.com",
+  "telefone": "11999998888",
+  "nome": "Teste Relacionamento"
+}
+
+### Passo 2: Listar e verificar
+GET {{baseUrl}}/usuarios/USR_TESTE_REL
+
+### 7.2 DELETAR Usuário → Verificar Cascata (deve deletar babás também)
+DELETE {{baseUrl}}/usuarios/USR_TESTE_REL
+
+### ======================================================
+### 8️⃣ TESTES DE STATUS HTTP CORRETOS
+### ======================================================
+
+### 8.1 Status 201 (Criado) - Após POST bem-sucedido
+POST {{baseUrl}}/babas
+Content-Type: application/json
+
+{
+  "nome": "Status 201 Test",
+  "cpf": "12321232123",
+  "telefone": "11988877766",
+  "email_1": "status201@email.com"
+}
+
+### Status esperado: 201 Created + JSON com codigo_baba
+
+### 8.2 Status 200 (OK) - Após GET bem-sucedido
+GET {{baseUrl}}/babas
+
+### Status esperado: 200 OK + Array JSON
+
+### 8.3 Status 200 (OK) - Após PUT bem-sucedido
+PUT {{baseUrl}}/babas/BAB123456789
+Content-Type: application/json
+
+{
+  "status_cadastro": "Ativa"
+}
+
+### Status esperado: 200 OK + JSON com dados atualizados
+
+### 8.4 Status 204 (No Content) - Após DELETE bem-sucedido
+DELETE {{baseUrl}}/babas/BAB999999999
+
+### Status esperado: 204 No Content (sem corpo na resposta)
+
+### ======================================================
+### 9️⃣ TESTES COMPLETOS DE FLUXO (Simulação Real)
+### ======================================================
+
+### FLUXO 1: Cadastrar Babá Completa + Atualizar + Buscar
+### Passo 1: Criar babá
+POST {{baseUrl}}/babas
+Content-Type: application/json
+
+{
+  "nome": "Fluxo Test Babá",
+  "cpf": "11144455566",
+  "telefone": "11966666666",
+  "email_1": "fluxo.baba@email.com",
+  "status_cadastro": "Ativa",
+  "foto": "fluxo_foto.jpg"
+}
+
+### Passo 2: Buscar todas babás
+GET {{baseUrl}}/babas
+
+### Passo 3: Atualizar status para Inativa
+### (Use o codigo_baba retornado no passo 1)
+PUT {{baseUrl}}/babas/BAB_USE_CODIGO_ACIMA
+Content-Type: application/json
+
+{
+  "status_cadastro": "Inativa"
+}
+
+### Passo 4: Verificar atualização
+GET {{baseUrl}}/babas
+
+### FLUXO 2: Cadastrar Responsável com 2 Filhos
+### Passo 1: Criar responsável
+POST {{baseUrl}}/pais
+Content-Type: application/json
+
+{
+  "nome": "Fluxo Responsável",
+  "cpf": "88877766655",
+  "telefone": "11955555555",
+  "email_1": "fluxo.responsavel@email.com",
+  "filhos": [
+    {
+      "nome": "Filho 1 Fluxo",
+      "cpf": "10101010101",
+      "alergias": "Nenhuma"
+    },
+    {
+      "nome": "Filho 2 Fluxo",
+      "cpf": "20202020202",
+      "alergias": "Glúten"
+    }
+  ]
+}
+
+### Passo 2: Listar todos usuários
+GET {{baseUrl}}/usuarios
+
+### Passo 3: Deletar responsável
+### (Deve deletar filhos também - cascata)
+DELETE {{baseUrl}}/pais/PAI_USE_CODIGO_ACIMA
+
+### ======================================================
+### 🔟 TESTES DE PERFORMANCE (Stress Test)
+### ======================================================
+
+### 10.1 Listar Todas as Babás (performance)
+GET {{baseUrl}}/babas
+
+### Resposta esperada: Rápido (< 100ms)
+
+### 10.2 Buscar Usuário Específico (por índice)
+GET {{baseUrl}}/usuarios?cpf=12345678900
+
+### Resposta esperada: Rápido (< 50ms) - usa índice UNIQUE
+
+### ======================================================
+### NOTAS FINAIS
+### ======================================================
+
+### Para executar este arquivo:
+### 1. Instale a extensão "REST Client" do VSCode
+### 2. Certifique-se que servidor está rodando: npm run dev
+### 3. Clique em "Send Request" acima de cada bloco
+### 4. Veja a resposta à direita
+
+### Códigos HTTP Esperados:
+### ✅ 201 = Criado (POST sucesso)
+### ✅ 200 = OK (GET/PUT sucesso)
+### ✅ 204 = Sem conteúdo (DELETE sucesso)
+### ❌ 400 = Requisição inválida (validação falhou)
+### ❌ 404 = Não encontrado (recurso não existe)
+### ❌ 500 = Erro interno do servidor
+
+### Campos para Copiar/Colar:
+### CPF Teste: 12345678900
+### Email Teste: teste@email.com
+### Telefone Teste: 11999999999
+### Nome Teste: Teste Babysite

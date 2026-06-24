@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" type="image/x-icon" href="/css/logo_do_babysite.ico">
+    
+    <title>Babysite - Perfil da Babá</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- CHAMADA DO ARQUIVO CSS EXTERNO -->
+    <link rel="stylesheet" href="../../css/perfil_babas/estilizacao_perfil_babas.css">
+</head>
+<body class="bg-light">
+
+    <!-- HEADER PADRÃO -->
+    <header class="navbar bg-babysite shadow-sm py-2 px-4">
+        <div class="container-fluid d-flex align-items-center">
+            <a href="/" class="navbar-brand d-flex align-items-center">
+                <img src="../../css/logo_do_babysite.ico" alt="Logo" width="45" height="45" class="rounded-circle border border-2 border-white">
+                <h1 class="h4 text-white mb-0 ms-2 d-none d-md-block">Babysite</h1>
+            </a>
+            <div class="mx-auto">
+                <input id="pesquisar" class="form-control rounded-pill border-0 shadow-sm" type="search" placeholder="Pesquisar babás...">
+            </div>
+            <div class="d-flex gap-2 align-items-center">
+                <span id="auth-status" class="small text-white fw-semibold"></span>
+                <button id="baba" type="button" class="btn btn-babysite shadow-sm">Sou Babá</button>
+                <button id="responsavel" type="button" class="btn btn-light rounded-pill fw-bold text-dark shadow-sm">Sou Pai/Mãe</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CORPO PRINCIPAL COM CAMPOS DO MODELO CONCEITUAL -->
+    <main class="container py-5">
+        
+        <div class="mb-4">
+            <a href="/" class="btn btn-link text-decoration-none text-secondary d-inline-flex align-items-center">
+                <i class="material-icons me-1">arrow_back</i> Voltar para a busca
+            </a>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            
+            <!-- COLUNA ESQUERDA: Identificação e Contatos (Baseado na imagem image_c21f37.png) -->
+            <aside class="col-lg-4">
+                <div class="card border-0 shadow-sm rounded-4 p-4 text-center">
+                    
+                    <div class="position-relative d-inline-block mx-auto mb-3">
+                        <img id="perfil-foto" src="../../img/placeholder.png" alt="Foto de perfil" class="avatar-perfil rounded-circle shadow-sm">
+                    </div>
+
+                    <!-- Atributo: Nome -->
+                    <h2 id="perfil-nome" class="h4 fw-bold mb-3">Carregando...</h2>
+
+                    <hr class="text-muted my-3">
+
+                    <div class="text-start">
+                        <h6 class="fw-bold mb-3">Informações de Cadastro</h6>
+                        
+                        <!-- Atributo: Telefone -->
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="material-icons text-secondary me-2">phone</i>
+                            <div>
+                                <span class="d-block text-muted small">Telefone</span>
+                                <strong id="perfil-telefone" class="small">-</strong>
+                            </div>
+                        </div>
+
+                        <!-- Atributo: CPF -->
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="material-icons text-secondary me-2">badge</i>
+                            <div>
+                                <span class="d-block text-muted small">CPF</span>
+                                <strong id="perfil-cpf" class="small">-</strong>
+                            </div>
+                        </div>
+
+                        <!-- Atributo: email_1 -->
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="material-icons text-secondary me-2">email</i>
+                            <div>
+                                <span class="d-block text-muted small">E-mail Principal (1)</span>
+                                <strong id="perfil-email1" class="small">-</strong>
+                            </div>
+                        </div>
+
+                        <!-- Atributo: email_2 -->
+                        <div class="d-flex align-items-center">
+                            <i class="material-icons text-secondary me-2">mail_outline</i>
+                            <div>
+                                <span class="d-block text-muted small">E-mail Alternativo (2)</span>
+                                <strong id="perfil-email2" class="small">-</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+
+            <!-- COLUNA DIREITA: Atributo Perfil -->
+            <section class="col-lg-6">
+                <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+                    <h3 class="h5 fw-bold mb-3 text-babysite">Perfil Profissional</h3>
+                    <!-- Atributo: Perfil -->
+                    <p id="perfil-descricao" class="text-secondary lh-lg mb-0">
+                        Carregando informações da babá...
+                    </p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/services/auth.js"></script>
+    <script src="../../js/perfil_babas/perfil_babas.js"></script>
+</body>
+</html>
