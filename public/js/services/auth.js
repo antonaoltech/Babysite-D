@@ -59,9 +59,20 @@
         return user?.nome || 'Usuário';
     }
 
+    function updateHeaderButtons() {
+        const btnBaba = document.getElementById('baba');
+        const btnResponsavel = document.getElementById('responsavel');
+        const hidden = isLoggedIn();
+
+        if (btnBaba) btnBaba.style.display = hidden ? 'none' : '';
+        if (btnResponsavel) btnResponsavel.style.display = hidden ? 'none' : '';
+    }
+
     function updateHeaderStatus(elementId) {
         const element = document.getElementById(elementId);
         if (!element) return;
+
+        updateHeaderButtons();
 
         if (!isLoggedIn()) {
             element.textContent = 'Faça login para entrar no seu perfil';

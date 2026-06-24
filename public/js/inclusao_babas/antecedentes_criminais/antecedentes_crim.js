@@ -64,8 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Salva de volta na mesma etiqueta 'dados_baba'
             window.localStorage.setItem('dados_baba', JSON.stringify(dados_completos));
 
-            console.log("Dados atualizados (Etapa 2 finalizada):", dados_completos);
-
             // 4. Navegação para a última etapa (Foto de Perfil)
             // O caminho ../ sai de 'antecedentes_criminais' e entra em 'perfil_foto'
             window.location.href = "../perfil_foto/perfil.html";

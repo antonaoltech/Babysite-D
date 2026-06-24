@@ -39,6 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 perfilFoto.src = baba.foto_url || "../../img/placeholder.png";
                 perfilFoto.alt = `Foto de ${nomeSafe}`;
             }
+
+            bindChatButton(babaId);
         })
         .catch((error) => {
             console.error("Erro:", error);
@@ -127,11 +129,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    const btnContato = document.getElementById("btn-contato");
-    if (btnContato) {
-        btnContato.addEventListener("click", (event) => {
-            event.preventDefault();
-            openAuthModal();
+    function bindChatButton(babaId) {
+        const chatButton = document.getElementById('btn-open-chat');
+        chatButton?.addEventListener('click', () => {
+            if (!window.babysiteAuth || !window.babysiteAuth.isLoggedIn()) {
+                openAuthModal();
+                return;
+            }
+            window.location.href = `../html_chat/chat.html?id=${babaId}`;
         });
     }
 });

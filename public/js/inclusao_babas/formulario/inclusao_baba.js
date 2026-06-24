@@ -55,8 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Isso permite que você recupere esses dados na tela de antecedentes
         window.localStorage.setItem('dados_baba', JSON.stringify(dados_baba));
         
-        console.log("Dados temporários salvos:", dados_baba);
-
         // 4. Redirecionamento
         // O caminho "../../" sobe duas pastas (sai de js/inclusao_babas para public/)
         // E depois entra em html/html_inclusao_babas/...

@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const botaoConfirmar = document.getElementById("confirmar");
 
     if (botaoConfirmar) {
-        console.log("🚀 Script do Responsável pronto!");
-
         botaoConfirmar.addEventListener('click', function(event) {
             event.preventDefault(); // Impede o recarregamento da página
 
@@ -46,8 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // 4. Salva no localStorage para persistência entre páginas
             window.localStorage.setItem('dados_responsavel', JSON.stringify(dados_responsavel));
-
-            console.log("✅ Dados salvos temporariamente:", dados_responsavel);
 
             // 5. Redirecionamento para a tela de Filhos
             // Sai da pasta html_inclusao_respon e entra na html_inclusao_filhos

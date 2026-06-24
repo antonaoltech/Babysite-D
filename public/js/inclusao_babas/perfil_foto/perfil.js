@@ -43,8 +43,6 @@ formPerfil.addEventListener('submit', async (event) => {
   // Impede que a página recarregue e quebre o envio assíncrono (AJAX/Fetch)
   event.preventDefault();
 
-  console.log('🚀 A recolher todos os dados do fluxo de cadastro...');
-
   try {
     // 1. Recupera a "sacola de dados" que veio lá da primeira tela (formulario)
     const dadosFormularioRaw = window.localStorage.getItem('dados_baba');
@@ -80,12 +78,9 @@ formPerfil.addEventListener('submit', async (event) => {
       antecedentes_pdf: dadosFormulario.antecedentes_pdf || null
     };
 
-    console.log('📦 Enviando pacote completo para o servidor...');
-
     // 4. Dispara para o backend usando a rota relativa da Web (funciona direto no Codespaces)
     const resposta = await api.create('/babas', dadosFinaisParaOBanco);
 
-    console.log('✅ Servidor respondeu com sucesso:', resposta);
     alert('Cadastro finalizado com sucesso! Bem-vinda ao Babysite.');
 
     // 5. Limpa a memória temporária do navegador para não misturar com o próximo cadastro

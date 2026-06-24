@@ -42,8 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 inputAlergias.value = "";
             } else {
                 // --- INÍCIO DO REQUEST HTTP ---
-                console.log("🚀 Enviando família completa para o servidor...", familia_completa);
-
                 fetch('/api/pais', {
                     method: 'POST',
                     headers: {
