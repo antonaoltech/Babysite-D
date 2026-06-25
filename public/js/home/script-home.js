@@ -60,9 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="card-body text-start">
                     <h5 class="card-title fw-bold text-dark">${baba.nome}</h5>
                     
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="badge bg-success rounded-pill">${baba.status_cadastro || 'Ativa'}</span>
-                        
+                    <div class="d-flex justify-content-end mb-2">
                         <button onclick="abrirPerfilBaba('${baba.codigo_baba || baba.id || ''}')" class="btn btn-outline-primary btn-sm fw-bold rounded-pill">
                             Ver Perfil
                         </button>
