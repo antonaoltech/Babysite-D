@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Usuario {
+  usuario_codigo String   @id
+  cpf            String   @unique
+  email_1        String   @unique
+  email_2        String?  @unique
+  telefone       String   @unique
+  nome           String
+
+  pais           Pais?
+  baba           Baba?
+  filhos         Filhos[]
+}
+
+model Pais {
+  codigo_pais    String  @id
+  cpf            String  @unique
+  email_1        String  @unique
+  email_2        String? @unique
+  telefone       String  @unique
+  nome           String
+  usuario_codigo String  @unique
+
+  usuario        Usuario @relation(fields: [usuario_codigo], references: [usuario_codigo])
+}
+
+model Baba {
+  codigo_baba      String  @id
+  cpf              String  @unique
+  email_1          String  @unique
+  email_2          String? @unique
+  telefone         String  @unique
+  nome             String
+  status_cadastro  String  @default("Ativa")
+  foto             String?
+  antecedentes_pdf String?
+  usuario_codigo   String  @unique
+
+  usuario          Usuario @relation(fields: [usuario_codigo], references: [usuario_codigo])
+}
+
+model Filhos {
+  codigo_filhos   String  @id
+  cpf             String  @unique
+  alergias        String
+  nome            String
+  usuario_codigo  String
+
+  usuario         Usuario @relation(fields: [usuario_codigo], references: [usuario_codigo])
+}

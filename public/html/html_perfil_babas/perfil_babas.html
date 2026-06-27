@@ -20,10 +20,10 @@
 <body class="bg-light">
 
     <!-- HEADER PADRÃO -->
-    <header class="navbar bg-babysite shadow-sm py-2 px-4">
+    <header class="navbar bg-babysite shadow-sm py-2 px-4" style="background-color: orange;">
         <div class="container-fluid d-flex align-items-center">
             <a href="/" class="navbar-brand d-flex align-items-center">
-                <img src="../../css/logo_do_babysite.ico" alt="Logo" width="45" height="45" class="rounded-circle border border-2 border-white">
+                <img src="../../css/logo_do_babysite.ico" alt="Logo" width="45" height="45" class="rounded-circle border border-2 border-white" style="border-color: rgb(119, 0, 255) !important; box-shadow: 0 0 10px rgba(119, 0, 255, 0.25);">
                 <h1 class="h4 text-white mb-0 ms-2 d-none d-md-block">Babysite</h1>
             </a>
             <div class="mx-auto">
@@ -107,7 +107,10 @@
             <!-- COLUNA DIREITA: Atributo Perfil -->
             <section class="col-lg-6">
                 <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
-                    <h3 class="h5 fw-bold mb-3 text-babysite">Perfil Profissional</h3>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3 class="h5 fw-bold mb-0 text-babysite">Perfil Profissional</h3>
+                        <button id="btn-open-chat" class="btn btn-chat btn-sm">Conversar</button>
+                    </div>
                     <!-- Atributo: Perfil -->
                     <p id="perfil-descricao" class="text-secondary lh-lg mb-0">
                         Carregando informações da babá...

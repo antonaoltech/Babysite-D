@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (response.ok) {
                         alert("Cadastro familiar finalizado e salvo com sucesso!");
                         window.localStorage.removeItem('dados_responsavel'); // Limpa o cache
-                      //  window.location.href = "../html_home/home.html";
+                        window.location.href = "../html_home/home.html";
                     } else {
                         throw new Error("Erro ao salvar no servidor.");
                     }
