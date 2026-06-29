@@ -23,6 +23,8 @@ async function create(data: PaisInput) {
 
     if (data.codigo_pais) {
       createData.codigo_pais = data.codigo_pais;
+    } else {
+      createData.codigo_pais = `pais_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
     }
 
     return prisma.pais.create({

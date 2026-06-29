@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import Baba from '../models/baba.js';
+import Usuario from '../models/Usuario.js';
 import HttpError from '../errors/HttpError.js';
 
 async function read(req: Request, res: Response, next: NextFunction) {
@@ -22,22 +23,43 @@ async function readById(req: Request, res: Response, next: NextFunction) {
 
 async function create(req: Request, res: Response, next: NextFunction) {
   try {
-    const data = req.body;
+    const data = req.body ?? {};
 
     const rawCpf = data.cpf || '';
     const cpfDigits = String(rawCpf).replace(/\D/g, '');
     if (!/^\d{11}$/.test(cpfDigits)) {
       throw new HttpError('CPF inválido. Deve conter 11 dígitos numéricos.', 400);
     }
-    data.cpf = cpfDigits;
 
-    const finalEmail = data.email_1 || data.email;
-    if (!finalEmail || !/^[^\s@]+@[^\s@]+\.com$/i.test(finalEmail)) {
-      throw new HttpError('Email inválido. Deve conter "@" e terminar com ".com".', 400);
+    const finalEmail = data.email_1 || data.email || data.email_principal || '';
+    if (!finalEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/i.test(finalEmail)) {
+      throw new HttpError('Email inválido. Deve conter "@" e um domínio válido.', 400);
     }
-    data.email_1 = finalEmail;
 
-    const novaBaba = await Baba.create(data);
+    const nome = data.nome || data.name || '';
+    const telefone = data.telefone || data.phone || '';
+    if (!nome || !telefone) {
+      throw new HttpError('Nome e telefone são obrigatórios.', 400);
+    }
+
+    const usuario = await Usuario.ensureFromCadastro({
+      cpf: cpfDigits,
+      email_1: finalEmail,
+      email_2: data.email_2 ?? data.email2 ?? data.email_secundario ?? null,
+      telefone,
+      nome,
+    });
+
+    const novaBaba = await Baba.create({
+      ...data,
+      cpf: cpfDigits,
+      email_1: finalEmail,
+      email_2: data.email_2 ?? data.email2 ?? data.email_secundario ?? null,
+      telefone,
+      nome,
+      usuario_codigo: data.usuario_codigo || usuario.usuario_codigo,
+    });
+
     res.status(201).json(novaBaba);
   } catch (error: any) {
     if (error instanceof HttpError) return next(error);

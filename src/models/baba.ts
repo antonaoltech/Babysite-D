@@ -29,6 +29,8 @@ async function create(data: BabaInput) {
 
     if (data.codigo_baba) {
       createData.codigo_baba = data.codigo_baba;
+    } else {
+      createData.codigo_baba = `baba_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
     }
 
     return prisma.baba.create({

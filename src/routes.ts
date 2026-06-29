@@ -10,6 +10,7 @@ router.use('/usuarios', usuarioRoutes);
 router.use('/babas', babaRoutes);
 router.use('/filhos', filhosRoutes);
 router.use('/pais', paisRoutes);
+router.use('/responsaveis', paisRoutes);
 router.use('/auth', usuarioRoutes);
 
 export default router;

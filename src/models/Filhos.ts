@@ -19,6 +19,8 @@ async function create(data: FilhosInput) {
 
     if (data.codigo_filhos) {
       createData.codigo_filhos = data.codigo_filhos;
+    } else {
+      createData.codigo_filhos = `filho_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
     }
 
     return prisma.filhos.create({

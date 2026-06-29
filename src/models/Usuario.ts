@@ -21,6 +21,8 @@ async function create(data: UsuarioInput) {
 
     if (data.usuario_codigo) {
       createData.usuario_codigo = data.usuario_codigo;
+    } else {
+      createData.usuario_codigo = `usr_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
     }
 
     return prisma.usuario.create({
@@ -70,10 +72,43 @@ async function findByEmail(email: string) {
       OR: [{ email_1: email }, { email_2: email }],
     },
     include: {
-      baba: true, // Se o nome da relação no seu schema for diferente, ajuste aqui
+      baba: true,
       pais: true,
     }
   });
 }
 
-export default { create, read, readById, update, remove, findByEmail };
+async function findByCpfOrEmail(cpf: string, email: string) {
+  return prisma.usuario.findFirst({
+    where: {
+      OR: [{ cpf }, { email_1: email }, ...(email ? [{ email_2: email }] : [])],
+    },
+  });
+}
+
+async function ensureFromCadastro(data: UsuarioInput) {
+  const cpf = String(data.cpf || '').replace(/\D/g, '');
+  const email = String(data.email_1 || '').trim();
+  const email2 = data.email_2 ? String(data.email_2).trim() : null;
+  const telefone = String(data.telefone || '').trim();
+  const nome = String(data.nome || '').trim();
+
+  if (!cpf || !email || !telefone || !nome) {
+    throw new Error('Não foi possível criar o usuário. Dados obrigatórios ausentes.');
+  }
+
+  const existente = await findByCpfOrEmail(cpf, email);
+  if (existente) {
+    return existente;
+  }
+
+  return create({
+    cpf,
+    email_1: email,
+    email_2: email2 || null,
+    telefone,
+    nome,
+  });
+}
+
+export default { create, read, readById, update, remove, findByEmail, findByCpfOrEmail, ensureFromCadastro };

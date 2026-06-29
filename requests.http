@@ -47,13 +47,8 @@ Content-Type: application/json
     "nome": "Carla Mendes",
     "cpf": "333.444.555-66",
     "telefone": "(31) 96666-3333",
-    "email": "carla.m@email.com",
-    "email2": "contato@carla.com",
-    "tipo": "baba",
-    "data_cadastro": "2023-10-27T16:15:00Z",
-    "antecedentes_status": "Arquivo enviado: antecedentes_civeis.pdf",
-    "foto_perfil_nome": "perfil_carla_v3.jpg",
-    "foto_base64": "data:image/png;base64,mHBORw0KGgo...",
+    "email_1": "carla.m@email.com",
+    "email_2": "contato@carla.com",
     "status_cadastro": "Ativa"
 }
 
@@ -90,9 +85,8 @@ Content-Type: application/json
     "nome": "Ricardo Santos",
     "cpf": "111.222.333-44",
     "telefone": "(11) 91111-2222",
-    "email_principal": "ricardo.s@email.com",
-    "email_secundario": "financeiro.ricardo@email.com",
-    "tipo_usuario": "Responsável",
+    "email_1": "ricardo.s@email.com",
+    "email_2": "financeiro.ricardo@email.com",
     "filhos": [
         {
             "nome": "Enzo Santos",
@@ -103,16 +97,15 @@ Content-Type: application/json
 }
 
 ### Responsável 2 - Mariana Lima (2 Filhos)
-POST http://localhost:3000/api/responsaveis
+POST http://localhost:3000/api/pais
 Content-Type: application/json
 
 {
     "nome": "Mariana Lima",
     "cpf": "555.444.333-22",
     "telefone": "(21) 98888-7777",
-    "email_principal": "mari.lima@email.com",
-    "email_secundario": "",
-    "tipo_usuario": "Responsável",
+    "email_1": "mari.lima@email.com",
+    "email_2": "",
     "filhos": [
         {
             "nome": "Pedro Lima",
